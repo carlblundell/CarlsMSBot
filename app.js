@@ -21,6 +21,8 @@ function helloResponse(req, res, next) {
   next();
 }
 
+
+
 // Create chat bot
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
 // more at https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
@@ -28,19 +30,38 @@ var connector = new builder.ChatConnector
                     ({ appId: process.env.MY_APP_ID, 
                        appPassword: process.env.MY_APP_PASSWORD
                     }); 
-var bot = new builder.UniversalBot(connector);
-server.post('/api/messages', connector.listen());
 
+// Set up handling for basic URLs
+
+server.post('/api/messages', connector.listen());
 
 server.get('/hello/:name', helloResponse)
 
+// serve up index.html at root
 server.get('/', restify.serveStatic({
  directory: __dirname,
  default: '/index.html'
 }));
 
+
+var bot = new builder.UniversalBot(connector);
+var intents = new builder.IntentDialog();
+
+
+
 // Create bot dialogs
-bot.dialog('/', [
+bot.dialog('/', intents)
+
+intents.matches(/^change name/i, [
+    function (session) {
+        session.beginDialog('/profile');
+    },
+    function (session, results) {
+        session.send('Ok... Changed your name to %s', session.userData.name);
+    }
+]);
+
+intents.onDefault([
     function (session, args, next) {
         if (!session.userData.name) {
             session.beginDialog('/profile');
