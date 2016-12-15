@@ -5,12 +5,14 @@ var builder = require('botbuilder')
 
 // Set up the restify server
 // 'restify is a node.js module built specifically to enable you to build correct REST web services'
+// server created and given a callback function
 
 var server = restify.createServer();
 server.listen(process.env.PORT || 3000, function() 
 {
    console.log('%s listening to %s', server.name, server.url); 
 });
+
 
 // Create chat bot
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
