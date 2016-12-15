@@ -16,13 +16,23 @@ server.listen(process.env.PORT || 3000, function()
 });
 
 
+function helloResponse(req, res, next) {
+  res.send('hello ' + req.params.name);
+  next();
+}
+
 // Create chat bot
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
 // more at https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
 var connector = new builder.ChatConnector
-({ appId: process.env.MY_APP_ID, appPassword: process.env.MY_APP_PASSWORD }); 
+                    ({ appId: process.env.MY_APP_ID, 
+                       appPassword: process.env.MY_APP_PASSWORD
+                    }); 
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
+
+
+server.get('/hello/:name', helloResponse)
 
 server.get('/', restify.serveStatic({
  directory: __dirname,
