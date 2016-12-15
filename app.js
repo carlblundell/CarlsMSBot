@@ -18,7 +18,7 @@ server.listen(process.env.PORT || 3000, function()
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
 // more at https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
 var connector = new builder.ChatConnector
-({ appId: 'YourAppId', appPassword: 'YourAppPassword' }); 
+({ appId: 'e3b33b97-1310-44e6-95d6-871d0693b7a1', appPassword: 'S1kFmdifD1WakvY7GxKe3SK' }); 
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
