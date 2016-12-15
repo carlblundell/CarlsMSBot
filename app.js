@@ -16,7 +16,6 @@ server.listen(process.env.PORT || 3000, function()
 });
 
 
-
 // Create chat bot
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
 // more at https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
@@ -25,10 +24,12 @@ var connector = new builder.ChatConnector
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
+/*
 server.get('/', restify.serveStatic({
  directory: __dirname,
  default: '/index.html'
 }));
+*/
 
 // Create bot dialogs
 bot.dialog('/', function (session) {
