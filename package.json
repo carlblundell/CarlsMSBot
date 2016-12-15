@@ -1,0 +1,28 @@
+{
+  "name": "carlsmsbot",
+  "version": "1.0.0",
+  "description": "Build a first bot in Node.js on MS Bot Framework",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlblundell/CarlsMSBot.git"
+  },
+  "keywords": [
+    "bot",
+    "skype",
+    "messenger"
+  ],
+  "author": "Carl Blundell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlblundell/CarlsMSBot/issues"
+  },
+  "homepage": "https://github.com/carlblundell/CarlsMSBot#readme",
+  "dependencies": {
+    "botbuilder": "^3.4.4",
+    "restify": "^4.3.0"
+  }
+}
