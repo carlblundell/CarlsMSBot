@@ -1,3 +1,4 @@
+
 // Bring in external requirements
 // Everything is an object - including libraries
 var restify = require('restify')
@@ -13,12 +14,15 @@ server.listen(process.env.PORT || 3000, function()
    console.log('%s listening to %s', server.name, server.url); 
 });
 
+// Get my app environment vars
+var myAppId = process.env.MY_APP_ID,
+var myAppPassword = process.env.MY_APP_PASSWORD;
 
 // Create chat bot
 // The ChatConnector 'Connects a UniversalBot to multiple channels via the Bot Framework'
 // more at https://docs.botframework.com/en-us/node/builder/chat-reference/classes/_botbuilder_d_.chatconnector.html
 var connector = new builder.ChatConnector
-({ appId: 'e3b33b97-1310-44e6-95d6-871d0693b7a1', appPassword: 'S1kFmdifD1WakvY7GxKe3SK' }); 
+({ appId: myAppId, appPassword: myAppPassword }); 
 var bot = new builder.UniversalBot(connector);
 server.post('/api/messages', connector.listen());
 
