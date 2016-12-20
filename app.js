@@ -124,6 +124,7 @@ intents.matches(/(grammar[\s]+school|grammar[\s]+schools)/i, [
         session.send(randomResponse("We have a long term project to use grammar schools to train our trade negotiators|For years, Europe has prevented us creating new grammar schools - and we intend to change that"));
     },
 ]);
+
 intents.matches(/(boris johnson|boris jonson|bojo|boris)/i, [
     function (session) {
         var vsn=Math.random()
@@ -134,9 +135,19 @@ intents.matches(/(boris johnson|boris jonson|bojo|boris)/i, [
     },
 ]);
 
-intents.matches(/(how are you|how'*s it going|what'*s up)*./i,[
+intents.matches(/(michael gove|mikey gove|mr gove|mike gove|[\s]+gove)/i, [
     function (session) {
-        session.send(randomResponse());
+        var vsn=Math.random()
+        if (vsn<0.5)
+            salvoMessages(session,"There was a young man called Gove|To be leader he always strove|But when the chance came|to seek out the fame|I chopped him all up for my stove",100,100);
+        else
+            salvoMessages(session,"That man, that man|Watch this space|My cunning plan will work|Wait and see...",200,1000);
+    },
+]);
+
+intents.matches(/(how are you|how'*s it going|what'*s up)/i,[
+    function (session) {
+        session.send(randomResponse("I'm focussed and ready|I'm functioning normomoalmlally thank you very much|Just chilling in my chocolate|I'm ready for Brexit!"));
     },
 ]);
 
